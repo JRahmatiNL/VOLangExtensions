@@ -25,6 +25,11 @@ That is because the `Bin` folder is ignored by git as it contains generated file
 actual app/library logic. Visual Objects is not smart however to automatically make that path &
 stops trying to do anyhting if that path doesn't exist!
 
+After everything is setup properly you will get something like the follwoing if you run the
+`VOLangExtensions.IntegrationsTests` project:
+
+![](ReadMeFiles/InterfaceValidationErrors.png)
+
 # Implementation of the idea
 
 ## Step 1 - Include `CodeFile/VOLangExtensions.Core.SCC` folder contents

@@ -8,11 +8,15 @@ Directory=D:\Develop\Repos\VOLangExtensions\
 LastUser=jafar.rahmati
 Keywords=
 enablescc=0
-CurrentUser=
+CurrentUser=jafar.rahmati
 [Directories]
 Repository=D:\Develop\Repos\VOLangExtensions\
+ExecutablePath=D:\Develop\Repos\VOLangExtensions\Bin\
 [Compiler]
 [VOLink]
+[GitConnector]
+ImportPath=D:\Develop\Repos\VOLangExtensions\CodeFiles\
+ExportPath=D:\Develop\Repos\VOLangExtensions\CodeFiles\
 [OpenWindows]
 MaxWindow=1
 ShellWindow=3, 2,-1,-1,-1,-1,297,212,1585,833
@@ -23,3 +27,6 @@ BrowserOptions1=0,0,262144,0,0,0,0,10,0,371,0,0,1
 BrowserItem1=59359,4,1,15
 BrowserSort1=31273,0,31273,0,59366,0,32011,0,31273,0,
 ActiveWindow=1
+[GitConnector]
+ImportPath=D:\Develop\Repos\VOLangExtensions\CodeFiles\
+ExportPath=D:\Develop\Repos\VOLangExtensions\CodeFiles\

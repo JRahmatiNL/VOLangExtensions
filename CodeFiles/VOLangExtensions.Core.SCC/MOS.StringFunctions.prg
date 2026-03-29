@@ -68,7 +68,7 @@ FUNCTION SplitToStringList(stringToSplit AS STRING, separator AS STRING, removeE
 			splittedValues:Add(splittedValue)
 		ENDIF
 		// Cut off stringToSplit so we can find the next value
-		stringToSplit := SubStr2(stringToSplit, DWORD(_CAST, splittedValueLength) + SLen(separator) + 1)
+		stringToSplit := SubStr2(stringToSplit, DWORD(_CAST, (splittedValueLength + INT(_CAST, SLen(separator)) + 1)))
 		
 	ENDDO
 	

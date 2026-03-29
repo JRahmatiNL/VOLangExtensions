@@ -1,8 +1,24 @@
 METHOD Start() CLASS App
 	
+	LOCAL mainApp := MainApplication{} AS MainApplication
+	LOCAL mainAppAbstraction := mainApp:AsAbstractApplicationRunner() AS IAbstractApplicationRunner
+	
+	mainAppAbstraction:Run("Integration tests sample app")
+	
+RETURN TRUE
+CLASS IAbstractApplicationRunner INHERIT Interface
+DECLARE METHOD Run
+METHOD Run(appNameToUse AS STRING) AS VOID STRICT CLASS IAbstractApplicationRunner
+	Send(SELF:_implement, GetCurrentMethodName(), appNameToUse)
+RETURN
+CLASS MainApplication
+DECLARE METHOD AsAbstractApplicationRunner
+DECLARE METHOD Run
+METHOD Run(appNameToUse AS STRING) AS VOID STRICT CLASS MainApplication
 	LOCAL console := TermConsole{} AS TermConsole
 	LOCAL validationOutput := ValidationResultModel{} AS ValidationResultModel
 	
+	console:Title := appNameToUse
 	console:WriteLine("Validating interfaces ...")
 	DO CASE
 	CASE !TestIfAllClassesHaveValidInterfaceImplementations(validationOutput)
@@ -14,4 +30,6 @@ METHOD Start() CLASS App
 	console:WriteLine("Done validating interfaces")
 	console:Wait()
 	
-RETURN TRUE
+RETURN
+METHOD AsAbstractApplicationRunner() AS IAbstractApplicationRunner STRICT CLASS MainApplication
+RETURN IAbstractApplicationRunner{SELF}

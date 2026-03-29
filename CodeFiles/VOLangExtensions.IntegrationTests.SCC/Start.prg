@@ -8,7 +8,7 @@ METHOD Start() CLASS App
 	CASE !TestIfAllClassesHaveValidInterfaceImplementations(validationOutput)
 		console:WriteLine("One or more errors occured while validating interfaces:")
 		console:WriteLine(JoinStringList(CRLF, validationOutput:Errors))
-		RETURN NIL
+		console:Wait()
 	ENDCASE
 	
 	console:WriteLine("Done validating interfaces")

@@ -1,0 +1,263 @@
+;
+; AutoType.txt
+; List of Templates for the new editor
+; each template goes on its own line in the format:
+; Template;Text to insert
+; The text to insert can have the following special characters
+; \a	Application Name
+; \c	Location of the cursor
+; \d	Current Date
+; \m	Current Module
+; \r	CRLF
+; \t	Tab Character
+; \u	Current Login name
+; \y    Current Year
+; \\	Backslash
+; \%NAME%	Nested template
+; Lines starting with a semicolon (such as these) are treated 
+; as comment and skipped.
+
+.A;.and. 
+.F;false
+.F.;false
+.N;.not. 
+.O;.or. 
+.T;true
+.T.;true
+_CB;_CodeBlock
+_DLL;_dll function \c() as \r
+_F;_field->
+_GI;_getinst()
+{|;{|\c| }
+AA;as array
+AB;append blank
+ACB;as codeblock
+ACC;access \c() class \r\%HEAD%\rreturn 
+AD;as dword
+ADP;as dword pascal 
+AGP;as long pascal 
+AI;as int
+AIP;as int pascal 
+AL;as logic
+ALI;as long
+ALP;as logic pascal 
+AO;as object
+AP;as ptr
+APP;as ptr pascal 
+As;FUNCTION As\m(x) AS \m STRICT\rRETURN x
+ASS;assign \c(uValue) class \r\%HEAD%:= uValue\r\rreturn uValue
+AST;as string
+AU;as usual
+AUP;as usual pascal 
+AVP;as void pascal 
+AW;as word
+BEG;begin sequence\rend sequence
+BEGR;begin sequence\rrecover\rend sequence
+CB;codeblock
+CL;class 
+CLA;class \c inherit \r\%HEAD%
+CLM;class \m inherit \c\r\%HEAD%
+DAC;DECLARE ACCESS 
+DAM;DECLARE METHOD 
+DAS;DECLARE ASSIGN 
+DEC;DECLARE 
+DEF;DEFINE \c := 
+DEFA;DEFAULT(@\c,)
+
+DIC;CLASS \mDictionary INHERIT TDictionary\r\%DIC_DECLARATIONS%\r\%DIC_IMPLEMENTATIONS%
+DIC_DECLARATIONS;DECLARE METHOD SetValue\rDECLARE METHOD TryGetValue
+DIC_IMPLEMENTATIONS;\%DIC_SETVALUE_IMPLEMENTATION%\r\%DIC_TRYGETVALUE_IMPLEMENTATION%
+DIC_SETVALUE_IMPLEMENTATION;\%DIC_SETVALUE_IMPLEMENTATION_PART1%\r\%DIC_SETVALUE_IMPLEMENTATION_PART2%
+DIC_SETVALUE_IMPLEMENTATION_PART1;METHOD SetValue(key AS USUAL, valueToSet AS \m) CLASS \mDictionary
+DIC_SETVALUE_IMPLEMENTATION_PART2;RETURN SUPER:_SetValue(key, valueToSet)
+DIC_TRYGETVALUE_IMPLEMENTATION;\%DIC_TRYGETVALUE_IMPLEMENTATION_PART1%\r\%DIC_TRYGETVALUE_IMPLEMENTATION_PART2%\r\%DIC_TRYGETVALUE_IMPLEMENTATION_PART3%
+DIC_TRYGETVALUE_IMPLEMENTATION_PART1;METHOD TryGetValue(key AS USUAL) AS \m CLASS \mDictionary
+DIC_TRYGETVALUE_IMPLEMENTATION_PART2;\tLOCAL defaultValue AS \m
+DIC_TRYGETVALUE_IMPLEMENTATION_PART3;RETURN ValueOrDefault(SUPER:_TryGetValue(key), defaultValue)
+
+DOC;DO CASE\rCASE \c\rCASE \rCASE \rOTHERWISE \rENDCASE
+DOW;DO WHILE \c\rENDDO
+DW;dword
+EBOX;ErrorBox{\c,""}
+EBS;ErrorBox{\c,""}:show()\r
+ENUM;GLOBAL \m AS \mEnum\rCLASS \mEnum\r\%ENUM_HEADER%\r\%ENUM_X%\r\%ENUM_Y%\r\%ENUM_Z%\r\r\%ENUM_INITIALIZER_CLASS%\%ENUM_INITIALIZER%
+ENUM_X;EXPORT X := 0 AS DWORD
+ENUM_Y;EXPORT Y := 1 AS DWORD
+ENUM_Z;EXPORT Z := 2 AS DWORD
+ENUM_HEADER;\%ENUM_HEADER_P1%\r\%ENUM_HEADER_P2%\r\%ENUM_HEADER_P3%
+ENUM_HEADER_P1;// NOTE: This class is only meant to be used as an enum
+ENUM_HEADER_P2;// The following public fields are used in the class declaration
+ENUM_HEADER_P3;// instead of constants in order to keep things together since VO uses random orders for constants, but not for fields!
+ENUM_INITIALIZER_CLASS;CLASS Global\mInitializer\r
+ENUM_INITIALIZER;METHOD Init() CLASS Global\mInitializer\r\%ENUM_INITIALIZER_HEADER%\r\t\m := \mEnum{}\rRETURN SELF
+ENUM_INITIALIZER_HEADER;\%ENUM_INITIALIZER_HEADER_P1%\r\%ENUM_INITIALIZER_HEADER_P2%
+ENUM_INITIALIZER_HEADER_P1;\t// This class is invoked using reflection in order to instantiate the Global \m variable.
+ENUM_INITIALIZER_HEADER_P2;\t// See Test_ResolveGlobalValues_WhenDetectingGlobalClassInitializerPattern_InvokesInitMethods for details!
+EXP;export 
+EXTE;EXTERNAL 
+FAC;GLOBAL \mFactory AS \m_Factory\rCLASS \m_Factory\rDECLARE METHOD Create\r\%FACTORY_CONSTRUCTOR%\r\%FACTORY_INITIALIZER_CLASS%\r\%FACTORY_INITIALIZER%\r
+FACTORY_INITIALIZER_CLASS;CLASS Global\mFactoryInitializer
+FACTORY_INITIALIZER;METHOD Init() CLASS Global\mFactoryInitializer\r\t\mFactory := \m_Factory{}\rRETURN SELF
+FACTORY_CONSTRUCTOR;\rMETHOD Create() AS \m STRICT CLASS \m_Factory\rRETURN \m{}\r
+FIE;field 
+FORD;FOR \c :=  DOWNTO 1\rnext
+FS;FormatString
+Format;FormatString
+FOI;LOCAL index AS DWORD\rFOR index := 1 TO \c\rNEXT
+FORN;FOR \c := 1 TO \rNEXT
+FORU;FOR \c := 1 UPTO \rnext
+FUN;FUNCTION \c()\r\%HEAD%
+FUNAS;FUNCTION \c() as \r\%HEAD%
+FUNS;FUNCTION start()\r\%HEAD%\c
+GI;_getinst()
+GL;global \c as 
+HEAD;\t// Description: \r\t// Parameters : \r\t// Returns    : \r
+HEADER;// Copyright © \y GrafX Software Development Tools, Inc.\r// Application: \a\r// Module     : \m\r// Date:      : \d\r// Time:      : \s\r// User:      : \u\r
+HID;hidden 
+IBOX;InfoBox{\c,"",""}
+IBS;InfoBox{\c,"",""}:show()\r
+IF;if \c\rendif
+IFE;if \c\relse\rendif
+IFI;if \c\relseif \relseif \relseif \rendif
+II;iif(\c,,)
+IFN;IF x != NULL_OBJECT ; x:y() ; ENDIF
+JR;// Ticket #\c - JR\y
+INH;inherit 
+INS;instance 
+INT;CLASS I\m INHERIT Interface\r\%INT_HEADER%\r\%INT_BODY%
+INT_HEADER;\%INT_HEADER_PART1%\r\%INT_HEADER_PART2%\r\%INT_HEADER_PART3%\r\%INT_HEADER_PART4%\r\%INT_HEADER_PART5%
+INT_HEADER_PART1;/* This class is meant as an interface, do not add implementations here! */
+INT_HEADER_PART2;/* In order to guarantee the implementing class is valid, you will need to: */
+INT_HEADER_PART3;/* 1. Add a conversion method like As\m() that creates this interface through an Adapter class */
+INT_HEADER_PART4;/* 2. Call HasValidInterfaceImplementations in a unit test */
+INT_HEADER_PART5;/* Note however that this is limited to method names since reflection is very basic in VO!*/
+INT_BODY;\%INT_DECLARE%\r\%INT_METHOD%
+INT_DECLARE;DECLARE METHOD MethodName
+INT_METHOD;METHOD MethodName() AS USUAL STRICT CLASS I\m\rRETURN Send(SELF:_implement, GetCurrentMethodName())
+LG;logic
+LI;long
+Linq.IndexOf;AScan(\cmyList, {|listitem| listitem[1] = "SearchString" })
+List;CLASS \mList INHERIT TList\r\%LIST_DECLARATIONS%\r\%LIST_ADD%\r\%LIST_ADDRANGE%\r\%LIST_GET%\r\%LIST_SET%\r\%LIST_CONTAINS%\r\%LIST_INDEX%\r
+LIST_DECLARATIONS;DECLARE METHOD Add\rDECLARE METHOD AddRange\rDECLARE METHOD Get\rDECLARE METHOD Set\rDECLARE METHOD Contains\rDECLARE METHOD IndexOf
+LIST_ADD;METHOD Add(itemToAdd AS \m) AS VOID STRICT CLASS \mList\r\tSUPER:_Add(itemToAdd)\rRETURN
+LIST_ADDRANGE;METHOD AddRange(collection AS \mList) AS \mList STRICT CLASS \mList\r\tSUPER:_AddRange(collection)\rRETURN SELF\r
+LIST_GET;METHOD Get(itemIndex AS DWORD) AS \m STRICT CLASS \mList\rRETURN SUPER:_Get(itemIndex)\r
+LIST_SET;METHOD Set(itemIndex AS DWORD, valueToSet AS \m) AS \m STRICT CLASS \mList\rRETURN SUPER:_Set(itemIndex, valueToSet)\r
+LIST_CONTAINS;METHOD Contains(itemToFind AS \m) AS LOGIC STRICT CLASS \mList\rRETURN SUPER:_Contains(itemToFind)
+LIST_INDEX;METHOD IndexOf(itemToFind AS \m) AS DWORD STRICT CLASS \mList\rRETURN SUPER:_IndexOf(itemToFind)
+LO;local 
+LODIM;local dim 
+MA;memalloc(\c)
+ME;member 
+MET;DECLARE METHOD \cMethodName\rMETHOD MethodName() AS ReturnType STRICT CLASS \m\r\%METHODHEADER%\rRETURN valueToReturn
+METD;METHOD dispatch(oEvent) CLASS \c\r\%HEAD%LOCAL x AS USUAL\r\rx := SUPER:dispatch(oEvent)\r\rRETURN x\r
+METHODHEADER;\tLOCAL valueToReturn := NULL_OBJECT AS ReturnType
+METI;METHOD init(\c) CLASS \r\%HEAD%\rRETURN SELF
+METS;METHOD START() CLASS app\r\%HEAD%\c
+METSU;method \c() CLASS \r\%HEAD%local x as usual\r\rx := super:()\r\rreturn x\r
+MF;memfree(\c)
+MV;memvar 
+NA;NULL_ARRAY
+ND;NULL_DATE
+NO;NULL_OBJECT
+NP;NULL_PTR
+NS;NULL_STRING
+NSY;NULL_SYMBOL
+OBJ;object 
+PAR;parameters 
+PAS;pascal 
+PM;PostMessage(\c,,,)
+PRI;private 
+PRO;protect 
+PROC;procedure \c\r\%HEAD%
+
+; Properties
+PROP;\c\%PROPERTY_DECLARATION%\r\%PROPERTY_GETTER%\r\%PROPERTY_SETTER%
+PROPERTY_DECLARATION;HIDDEN _PropertyName AS STRING\rDECLARE ACCESS PropertyName\rDECLARE ASSIGN PropertyName
+PROPERTY_GETTER;ACCESS PropertyName AS STRING STRICT CLASS \m\rRETURN _PropertyName
+PROPERTY_SETTER;ASSIGN PropertyName(propertyName AS STRING) AS STRING STRICT CLASS \m\rRETURN SELF:_PropertyName:=propertyName
+
+APROP;\c\%APROPERTY_DECLARATION%\r\%APROPERTY_GETTER%\r\%APROPERTY_SETTER%
+APROPERTY_DECLARATION;HIDDEN _PropertyName AS ARRAY\rDECLARE ACCESS PropertyName\rDECLARE ASSIGN PropertyName
+APROPERTY_GETTER;ACCESS PropertyName AS ARRAY STRICT CLASS \m\rRETURN _PropertyName
+APROPERTY_SETTER;ASSIGN PropertyName(propertyName AS ARRAY) AS ARRAY STRICT CLASS \m\rRETURN SELF:_PropertyName:=propertyName
+
+BPROP;\c\%BPROPERTY_DECLARATION%\r\%BPROPERTY_GETTER%\r\%BPROPERTY_SETTER%
+BPROPERTY_DECLARATION;HIDDEN _PropertyName AS LOGIC\rDECLARE ACCESS PropertyName\rDECLARE ASSIGN PropertyName
+BPROPERTY_GETTER;ACCESS PropertyName AS LOGIC STRICT CLASS \m\rRETURN _PropertyName
+BPROPERTY_SETTER;ASSIGN PropertyName(propertyName AS LOGIC) AS LOGIC STRICT CLASS \m\rRETURN SELF:_PropertyName:=propertyName
+
+NPROP;\c\%NPROPERTY_DECLARATION%\r\%NPROPERTY_GETTER%\r\%NPROPERTY_SETTER%
+NPROPERTY_DECLARATION;HIDDEN _PropertyName AS DWORD\rDECLARE ACCESS PropertyName\rDECLARE ASSIGN PropertyName
+NPROPERTY_GETTER;ACCESS PropertyName AS DWORD STRICT CLASS \m\rRETURN _PropertyName
+NPROPERTY_SETTER;ASSIGN PropertyName(propertyName AS DWORD) AS DWORD STRICT CLASS \m\rRETURN SELF:_PropertyName:=propertyName
+
+DPROP;\c\%DPROPERTY_DECLARATION%\r\%DPROPERTY_GETTER%\r\%DPROPERTY_SETTER%
+DPROPERTY_DECLARATION;HIDDEN _PropertyName AS DATE\rDECLARE ACCESS PropertyName\rDECLARE ASSIGN PropertyName
+DPROPERTY_GETTER;ACCESS PropertyName AS DATE STRICT CLASS \m\rRETURN _PropertyName
+DPROPERTY_SETTER;ASSIGN PropertyName(propertyName AS DATE) AS DATE STRICT CLASS \m\rRETURN SELF:_PropertyName:=propertyName
+
+PUB;public 
+RES;resource 
+RESB;resource \c bitmap
+RESI;resource \c icon
+RESULTT;CLASS \mResult INHERIT TResult\rDECLARE METHOD Init\rDECLARE ACCESS SuccessValue\r\%RESULT_INIT%\r\%RESULT_VALUE%\r\%RESULT_FAC%
+RESULT_INIT;METHOD Init(errorOrSuccessValue AS USUAL) AS TResult STRICT CLASS \mResult\r\tSUPER:Init(errorOrSuccessValue)\rRETURN SELF
+RESULT_VALUE;ACCESS SuccessValue AS \m STRICT CLASS \mResult\rRETURN SELF:_successValue
+RESULT_FAC;GLOBAL \mResultFactory AS \mResult_Factory\rCLASS \mResult_Factory\rDECLARE METHOD CreateSuccess\rDECLARE METHOD CreateError\r\%RESULTFACTORY_SUCCESS_CONSTRUCTOR%\r\%RESULTFACTORY_VALIDATION_CONSTRUCTOR%\r\%RESULTFACTORY_INITIALIZER_CLASS%\r\%RESULTFACTORY_INITIALIZER%
+RESULTFACTORY_INITIALIZER_CLASS;CLASS Global\mResultFactoryInitializer
+RESULTFACTORY_INITIALIZER;METHOD Init() CLASS Global\mResultFactoryInitializer\r\t\mResultFactory := \mResult_Factory{}\rRETURN SELF
+RESULTFACTORY_SUCCESS_CONSTRUCTOR;METHOD CreateSuccess(successValue AS \m) AS \mResult STRICT CLASS \mResult_Factory\rRETURN \mResult{successValue}
+RESULTFACTORY_VALIDATION_CONSTRUCTOR;METHOD CreateError(errorValue AS ValidationResultModel) AS \mResult STRICT CLASS \mResult_Factory\rRETURN \mResult{errorValue}
+
+;OPTION TEMPLATE
+; Each template follows this format:
+; OptionTemplate;Text to insert
+OPTION;CLASS \mOption INHERIT TOption\rDECLARE ACCESS OptionValue\r\%OPTION_INIT%\r\%OPTION_VALUE%\r\%OPTION_FACTORY%
+OPTION_INIT;METHOD Init(defaultValue) CLASS \mOption\r\tSUPER:Init(defaultValue)\rRETURN SELF
+OPTION_VALUE;ACCESS OptionValue(_ := "Only use after calling HasValue()!") AS \m STRICT CLASS \mOption\rRETURN SELF:_optionValue
+OPTION_FACTORY;GLOBAL \mOptionFactory AS \mOption_Factory\rCLASS \mOption_Factory\rDECLARE METHOD CreateSome\rDECLARE METHOD CreateNone\r\%OPTION_FACTORY_CREATE%\r\%OPTION_FACTORY_CREATE_NONE%\r\%OPTION_FACTORY_INITIALIZER%
+OPTION_FACTORY_CREATE;METHOD CreateSome(defaultValue AS \m) AS \mOption STRICT CLASS \mOption_Factory\rRETURN \mOption{defaultValue}
+OPTION_FACTORY_CREATE_NONE;METHOD CreateNone() AS \mOption STRICT CLASS \mOption_Factory\rRETURN \mOption{NIL}
+OPTION_FACTORY_INITIALIZER;CLASS Global\mOptionFactoryInitializer\rMETHOD Init() CLASS Global\mOptionFactoryInitializer\r\t\mOptionFactory := \mOption_Factory{}\rRETURN SELF
+
+RET;return 
+RETRUN;return 
+RN;return NIL\r
+SDEF;static define \c := 
+SE;self:
+SFUN;static function \c()\r\%HEAD%
+SGL;static global \c as 
+SM;SendMessage(\c,,,)
+SPROC;static procedure \c\r\%HEAD%
+STLO;static local 
+STLODIM;static local dim 
+STR;string 
+string.contains;InStr(\ccSearch, cTarget)
+string.endswith;RAt(cSearch, cTarget) == (LEN(cTarget) - LEN(cSearch))
+STRU;structure \c\r\tmember \rmember \rmember \r
+SU;super:
+TBOX;TextBox{\c,"",""}
+TBS;TextBox{\c,"",""}:show()\r
+
+SFIELDS;CLASS \mFields\rHIDDEN _server AS \m\rDECLARE METHOD Init\rMETHOD Init(server AS \m) AS \mFields STRICT CLASS \mFields\r\t_server:= server\rRETURN SELF
+
+TEST;CLASS \m\r\%TESTM%
+TESTM;\%TESTMETHOD_IMPLEMENTATION%
+TESTMETHOD_IMPLEMENTATION_PART1;METHOD Test_MethodX_WithArgumentsY_ReturnsOrDoesZ() CLASS \m
+TESTMETHOD_IMPLEMENTATION_PART2A;	// 1. Arrange\r	
+TESTMETHOD_IMPLEMENTATION_PART2B;	// 2. Act\r\tLOCAL testResult := FALSE
+TESTMETHOD_IMPLEMENTATION_PART2C;	// 3. Assert\r\tIt(testResult, Should:Be, TRUE, Because("either implementation or this test needs adjustment."))
+TESTMETHOD_IMPLEMENTATION_PART3;RETURN "Test_MethodX_WithArgumentsY_ReturnsOrDoesZ"
+
+TESTMETHOD_IMPLEMENTATION;\%TESTMETHOD_IMPLEMENTATION_PART1%\r\%TESTMETHOD_IMPLEMENTATION_PART2%\r\%TESTMETHOD_IMPLEMENTATION_PART3%
+TESTMETHOD_IMPLEMENTATION_PART2;\%TESTMETHOD_IMPLEMENTATION_PART2A%\r\%TESTMETHOD_IMPLEMENTATION_PART2B%\r\%TESTMETHOD_IMPLEMENTATION_PART2C%
+
+TEX;Entity,textblock 
+TICK;\c Opsomming ticket info     : Ticket #0000000 - Detail informatie over ticket.
+TW;WhiteSpaceFormatting:TrimWhiteSpaces
+TS;TrimString
+VMET;DECLARE METHOD \cMethodName\rMETHOD MethodName() AS ReturnModel STRICT CLASS VOCS_Service\rRETURN NULL_OBJECT
+WBOX;WarningBox{\c,"",""}
+WBS;WarningBox{\c,"",""}:show()\r
+WHI;WHILE \c\rEND

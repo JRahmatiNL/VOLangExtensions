@@ -96,7 +96,8 @@ StyleCopReport.xml
 .builds
 *.pidb
 *.svclog
-*.scc
+# Special case for VO for SCC to git migration, since its usually tied to a SourceSafe
+#*.scc
 
 # Chutzpah Test files
 _Chutzpah*

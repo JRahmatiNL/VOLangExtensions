@@ -9,6 +9,22 @@ While other efforts like XSharp exist in order to transform Visual Objects codeb
 its sometimes impossible to directly migrate a project into that language. That is because sometimes the codebase uses rarely know functions.
 Sometimes there is even a hack around the language features that gets rejected by the XSharp migration tool.
 
+# Using the sample project
+This project is setup in such a way that you can immediately open `VOLangExtensions.VoPrj` for a glimpse
+of how the interfaces are introduced. The only requirement is to clone the git repo into:
+`D:\Develop\Repos\VOLangExtensions`. If for any reason its not possible to clone into the D drive, you
+can use the [subst](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/subst)
+command from Windows or any other methods like a 
+[VHD](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/manage-virtual-hard-disks) 
+to create a Fake D drive.
+
+In order to actually run the included `VOLangExtensions.IntegrationTests` app you also need to ensure
+a `Bin` folder including a `Debug` folder also exists. Oterhwise you will get an error similar to:
+`Invalid path: D:\Develop\Repos\VOLangExtensions\Bin\Debug\`.
+That is because the `Bin` folder is ignored by git as it contains generated files rather than the
+actual app/library logic. Visual Objects is not smart however to automatically make that path &
+stops trying to do anyhting if that path doesn't exist!
+
 # Implementation of the idea
 
 ## Step 1 - Include `CodeFile/VOLangExtensions.Core.SCC` folder contents

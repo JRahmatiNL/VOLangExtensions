@@ -212,7 +212,7 @@ If necessary, this can even be expanded further to use some kind of dictionary o
 generate an abstraction by some kind of config:
 
 ```
-METHOD CreateFtpHanlder() AS IAbstractDataServer STRICT CLASS ExampleClass
+METHOD CreateFtpHanlder() AS IAbstractFtpHandlerByFtpId STRICT CLASS ExampleClass
 	DO CASE
 	CASE SELF:DBConfig == "OldFTP"
 		// Note: Intellisense might stop after the method call, 
